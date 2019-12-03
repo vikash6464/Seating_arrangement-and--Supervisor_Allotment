@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+            table, td {
+                border: 1px solid black;
+            }
+            th{
+              display: none;
+          }
+          th,td {
+  padding: 50px;
+}
+            .hide{
+               border: 1px solid white;
+            }
+        </style>
+        <title>
+            Seats
+        </title>
+    </head>
+     
+    <body>
+            
+             
+             <table>
+                 <tr>
+                    <td id="0">   </td>
+                    <td class="hide">   </td>
+                    <td class="hide">   </td>
+                    <td id="25">   </td>
+                   
+                 </tr>
+                 <tr>
+                        <td id="1">  </td>
+                        <td id="9">  </td>
+                        <td id="17">  </td>
+                        <td id="26">  </td>
+                    </tr>
+                    <tr>
+                            <td id="2">  </td>
+                            <td id="10">  </td>
+                            <td id="18">  </td>
+                            <td id="27">  </td>
+                        </tr>
+                        <tr>
+                                <td id="3">   </td>
+                                <td id="11">  </td>
+                                <td id="19">  </td>
+                                <td id="28">  </td>
+                            </tr>
+                            <tr>
+                                    <td id="4">  </td>
+                                    <td id="12">  </td>
+                                    <td id="20">  </td>
+                                    <td id="29">  </td>
+                                </tr>
+                                <tr>
+                                        <td id="5">  </td>
+                                        <td id="13">  </td>
+                                        <td id="21">  </td>
+                                        <td id="30">  </td>
+                                    </tr>
+                                    <tr>
+                                            <td id="6">  </td>
+                                            <td id="14">  </td>
+                                            <td id="22">  </td>
+                                            <td id="31">  </td>
+                                        </tr>
+                                        <tr>
+                                                <td id="7">  </td>
+                                                <td id="15">  </td>
+                                                <td id="23">  </td>
+                                                <td id="32">  </td>
+                                            </tr>
+                                            <tr>
+                                                    <td id="8">  </td>
+                                                    <td id="16">  </td>
+                                                    <td id="24">  </td>
+                                                    <td id="33">  </td>
+                                                </tr>
+             </table>
+             <button type="button" onclick="loadDoc()">GENERATE</button>
+             <script>
+                
+                 function loadDoc(){
+                    //for(var i=1;i<=34;i++){
+                    var message;
+                    var xhr = new XMLHttpRequest();
+                    var url = "http://localhost:4000/seat";
+                    xhr.open("POST", url, true);
+                    xhr.setRequestHeader('Content-Type','application/json');
+                    xhr.send();
+                    //document.getElementById("w").innerHTML= "abcdef";
+                    var arr = [];
+                    xhr.onload = function () {
+                        if (this.status == 200) {
+                            
+                            var ans = JSON.parse(this.responseText);
+                            //arr.push(this.responseText);
+                        }
+                        
+                        else if (this.status == 400) {
+                            message = alert(this.responseText);
+                            document.write("123456s");
+                            alert(message.message);
+                        }
+                        else {
+                            alert("incorrect request");
+                        }
+                        //alert(arr instanceof Array);
+                        alert(ans[0]);
+                        if(arr.length>=0){
+                            for(var i=0;i<34;i++){
+                                var a = i;
+                                var b=a.toString();
+                                var c=i%34;
+                                document.getElementById(b).innerHTML = ans[c];
+                            }
+
+
+
+
+
+                        }
+                        
+                    };
+                   
+                }
+            //}
+            </script>
+
+         </body> 
+ </html>
